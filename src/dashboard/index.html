@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radiant14 Instagram AI Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8">Radiant14 Instagram AI Dashboard</h1>
+        
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-lg font-semibold">Total Actions</h3>
+                <p class="text-2xl font-bold" id="totalActions">0</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-lg font-semibold">Successful Actions</h3>
+                <p class="text-2xl font-bold text-green-600" id="successfulActions">0</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-lg font-semibold">Failed Actions</h3>
+                <p class="text-2xl font-bold text-red-600" id="failedActions">0</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-lg font-semibold">Last 24 Hours</h3>
+                <p class="text-2xl font-bold" id="last24Hours">0</p>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-lg font-semibold mb-4">Action Breakdown</h3>
+                <canvas id="actionChart"></canvas>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-lg font-semibold mb-4">Engagement Metrics</h3>
+                <canvas id="engagementChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Actions -->
+        <div class="bg-white p-4 rounded-lg shadow mb-8">
+            <h3 class="text-lg font-semibold mb-4">Recent Actions</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2">Time</th>
+                            <th class="px-4 py-2">Action</th>
+                            <th class="px-4 py-2">Target</th>
+                            <th class="px-4 py-2">Status</th>
+                            <th class="px-4 py-2">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentActions">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Time Filter -->
+        <div class="mb-8">
+            <select id="timeFilter" class="p-2 border rounded">
+                <option value="24h">Last 24 Hours</option>
+                <option value="7d">Last 7 Days</option>
+                <option value="30d">Last 30 Days</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch dashboard data
+        async function fetchDashboardData() {
+            const response = await fetch('/api/dashboard');
+            return await response.json();
+        }
+
+        // Function to update the dashboard
+        async function updateDashboard() {
+            const data = await fetchDashboardData();
+            
+            // Update summary cards
+            document.getElementById('totalActions').textContent = data.summary.totalActions;
+            document.getElementById('successfulActions').textContent = data.summary.successfulActions;
+            document.getElementById('failedActions').textContent = data.summary.failedActions;
+            document.getElementById('last24Hours').textContent = data.summary.last24Hours;
+
+            // Update charts
+            updateActionChart(data.actionBreakdown);
+            updateEngagementChart(data.metrics.engagement);
+
+            // Update recent actions table
+            updateRecentActions(data.recentActions);
+        }
+
+        // Function to update the action breakdown chart
+        function updateActionChart(breakdown) {
+            const ctx = document.getElementById('actionChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(breakdown),
+                    datasets: [{
+                        data: Object.values(breakdown),
+                        backgroundColor: [
+                            '#FF6384',
+                            '#36A2EB',
+                            '#FFCE56',
+                            '#4BC0C0',
+                            '#9966FF',
+                            '#FF9F40'
+                        ]
+                    }]
+                }
+            });
+        }
+
+        // Function to update the engagement chart
+        function updateEngagementChart(engagement) {
+            const ctx = document.getElementById('engagementChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Likes', 'Comments', 'Follows', 'Shares'],
+                    datasets: [{
+                        label: 'Engagement',
+                        data: [
+                            engagement.likes,
+                            engagement.comments,
+                            engagement.follows,
+                            engagement.shares || 0
+                        ],
+                        backgroundColor: '#36A2EB'
+                    }]
+                }
+            });
+        }
+
+        // Function to update the recent actions table
+        function updateRecentActions(actions) {
+            const tbody = document.getElementById('recentActions');
+            tbody.innerHTML = actions.map(action => `
+                <tr>
+                    <td class="px-4 py-2">${new Date(action.timestamp).toLocaleString()}</td>
+                    <td class="px-4 py-2">${action.action}</td>
+                    <td class="px-4 py-2">${action.target ? JSON.stringify(action.target) : 'N/A'}</td>
+                    <td class="px-4 py-2 ${action.success ? 'text-green-600' : 'text-red-600'}">
+                        ${action.success ? 'Success' : 'Failed'}
+                    </td>
+                    <td class="px-4 py-2">${JSON.stringify(action.details)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Update dashboard every 30 seconds
+        setInterval(updateDashboard, 30000);
+        
+        // Initial update
+        updateDashboard();
+    </script>
+</body>
+</html> 

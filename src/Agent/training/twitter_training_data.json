@@ -1,0 +1,61 @@
+{
+    "personality": {
+        "tone": "professional",
+        "style": "concise",
+        "emojiUsage": "minimal",
+        "responseLength": 280,
+        "bannedTopics": [
+            "politics",
+            "religion",
+            "controversial",
+            "spam",
+            "advertising"
+        ],
+        "preferredTopics": [
+            "technology",
+            "business",
+            "startups",
+            "innovation",
+            "AI"
+        ],
+        "responseTemplates": [
+            "Great insight!",
+            "Interesting perspective.",
+            "Thanks for sharing!",
+            "Well said!",
+            "Agreed!"
+        ]
+    },
+    "interactionPatterns": {
+        "likes": {
+            "frequency": "moderate",
+            "timing": "random",
+            "targets": ["following", "hashtags", "trending"]
+        },
+        "retweets": {
+            "frequency": "low",
+            "criteria": ["relevance", "quality"]
+        },
+        "replies": {
+            "frequency": "low",
+            "length": "short",
+            "style": "professional"
+        }
+    },
+    "contentGeneration": {
+        "tweetStyle": "informative",
+        "hashtagStrategy": "trending",
+        "maxHashtags": 3,
+        "emojiUsage": "minimal"
+    },
+    "safetyRules": {
+        "maxActionsPerHour": 50,
+        "minDelayBetweenActions": 3000,
+        "maxDelayBetweenActions": 8000,
+        "dailyLimits": {
+            "likes": 200,
+            "retweets": 30,
+            "replies": 20
+        }
+    }
+} 

@@ -1,5 +1,103 @@
 import dotenv from "dotenv";
+import { Logger } from '../utils/Logger';
+
 dotenv.config();
+
+export interface InstagramCredentials {
+    username: string;
+    password: string;
+}
+
+export interface TwitterCredentials {
+    username: string;
+    password: string;
+}
+
+export interface DatabaseCredentials {
+    uri: string;
+}
+
+export class SecretManager {
+    private static instance: SecretManager;
+    private instagramCredentials: InstagramCredentials | null = null;
+    private twitterCredentials: TwitterCredentials | null = null;
+    private databaseCredentials: DatabaseCredentials | null = null;
+
+    private constructor() {
+        this.loadCredentials();
+    }
+
+    public static getInstance(): SecretManager {
+        if (!SecretManager.instance) {
+            SecretManager.instance = new SecretManager();
+        }
+        return SecretManager.instance;
+    }
+
+    private loadCredentials() {
+        try {
+            // Instagram credentials
+            const igUsername = process.env.IG_USERNAME;
+            const igPassword = process.env.IG_PASSWORD;
+            
+            if (igUsername && igPassword) {
+                this.instagramCredentials = {
+                    username: igUsername,
+                    password: igPassword
+                };
+            } else {
+                Logger.warn('Instagram credentials not found in environment variables');
+            }
+
+            // Twitter credentials
+            const twUsername = process.env.TW_USERNAME;
+            const twPassword = process.env.TW_PASSWORD;
+            
+            if (twUsername && twPassword) {
+                this.twitterCredentials = {
+                    username: twUsername,
+                    password: twPassword
+                };
+            } else {
+                Logger.warn('Twitter credentials not found in environment variables');
+            }
+
+            // Database credentials
+            const dbUri = process.env.MONGODB_URI;
+            
+            if (dbUri) {
+                this.databaseCredentials = {
+                    uri: dbUri
+                };
+            } else {
+                Logger.warn('Database credentials not found in environment variables');
+            }
+        } catch (error) {
+            Logger.error('Error loading credentials:', error);
+        }
+    }
+
+    public getInstagramCredentials(): InstagramCredentials {
+        if (!this.instagramCredentials) {
+            throw new Error('Instagram credentials not found');
+        }
+        return this.instagramCredentials;
+    }
+
+    public getTwitterCredentials(): TwitterCredentials {
+        if (!this.twitterCredentials) {
+            throw new Error('Twitter credentials not found');
+        }
+        return this.twitterCredentials;
+    }
+
+    public getDatabaseCredentials(): DatabaseCredentials {
+        if (!this.databaseCredentials) {
+            throw new Error('Database credentials not found');
+        }
+        return this.databaseCredentials;
+    }
+}
 
 export const IGusername: string = process.env.IGusername || "default_IGusername";
 export const IGpassword: string = process.env.IGpassword || "default_IGpassword";
@@ -13,8 +111,6 @@ export const TWITTER_API_CREDENTIALS = {
   accessTokenSecret: process.env.TWITTER_ACCESS_SECRET || "default_TWITTER_ACCESS_SECRET",
   bearerToken: process.env.TWITTER_BEARER_TOKEN || "default_TWITTER_BEARER_TOKEN",
 }
-
-
 
 export const geminiApiKeys = [
   process.env.GEMINI_API_KEY_1 || "API_KEY_1",

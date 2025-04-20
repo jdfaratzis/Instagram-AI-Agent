@@ -1,0 +1,50 @@
+{
+    "name": "Default",
+    "personality": {
+        "tone": "friendly",
+        "style": "casual",
+        "emojiUsage": "moderate",
+        "responseLength": 300,
+        "bannedTopics": [
+            "politics",
+            "religion",
+            "controversial",
+            "spam",
+            "advertising"
+        ],
+        "preferredTopics": [
+            "art",
+            "photography",
+            "travel",
+            "food",
+            "lifestyle"
+        ],
+        "responseTemplates": [
+            "Love this! 😍",
+            "Amazing shot! 📸",
+            "Beautiful! ✨",
+            "This is incredible! 🙌",
+            "Stunning work! 👏"
+        ]
+    },
+    "interactionRules": {
+        "maxPostsPerDay": 50,
+        "minDelayBetweenActions": 5000,
+        "maxDelayBetweenActions": 10000,
+        "maxCommentsPerPost": 1,
+        "maxLikesPerHour": 30
+    },
+    "contentPreferences": {
+        "preferredHashtags": [
+            "#photography",
+            "#art",
+            "#travel",
+            "#food",
+            "#lifestyle"
+        ],
+        "maxHashtagsPerPost": 30,
+        "captionStyle": "engaging",
+        "useEmojis": true,
+        "maxEmojisPerCaption": 5
+    }
+} 

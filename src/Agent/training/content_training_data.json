@@ -1,0 +1,260 @@
+{
+    "mediaHandling": {
+        "video": {
+            "supportedPlatforms": ["YouTube"],
+            "processing": {
+                "maxDuration": 600,
+                "qualityPreference": "high",
+                "downloadFormat": "mp4",
+                "thumbnailGeneration": true
+            },
+            "contentAnalysis": {
+                "transcription": true,
+                "keyframeExtraction": true,
+                "sentimentAnalysis": true
+            }
+        },
+        "audio": {
+            "supportedFormats": ["mp3", "wav", "m4a"],
+            "processing": {
+                "maxDuration": 300,
+                "qualityPreference": "high",
+                "noiseReduction": true
+            },
+            "contentAnalysis": {
+                "transcription": true,
+                "speechRecognition": true,
+                "sentimentAnalysis": true
+            }
+        },
+        "documents": {
+            "supportedFormats": ["pdf", "doc", "docx", "txt"],
+            "processing": {
+                "maxSize": 10485760,
+                "extractText": true,
+                "preserveFormatting": true
+            },
+            "contentAnalysis": {
+                "keywordExtraction": true,
+                "summaryGeneration": true,
+                "topicClassification": true
+            }
+        }
+    },
+    "contentProcessing": {
+        "textExtraction": {
+            "methods": ["OCR", "directExtraction"],
+            "languages": ["en", "es", "fr", "de"],
+            "accuracyThreshold": 0.95
+        },
+        "metadataHandling": {
+            "extract": ["title", "author", "date", "keywords"],
+            "preserveOriginal": true,
+            "generateAdditional": true
+        },
+        "contentOrganization": {
+            "categorization": true,
+            "tagging": true,
+            "versionControl": true
+        }
+    },
+    "safetyRules": {
+        "fileSizeLimits": {
+            "video": 500000000,
+            "audio": 100000000,
+            "documents": 10485760
+        },
+        "processingLimits": {
+            "maxConcurrentProcesses": 5,
+            "maxProcessingTime": 3600,
+            "maxRetries": 3
+        },
+        "contentValidation": {
+            "virusScan": true,
+            "formatVerification": true,
+            "contentModeration": true
+        }
+    },
+    "outputFormats": {
+        "video": ["mp4", "mov", "avi"],
+        "audio": ["mp3", "wav", "m4a"],
+        "documents": ["pdf", "txt", "json"],
+        "metadata": ["json", "xml"]
+    },
+    "referenceLinks": {
+        "websites": [
+            {
+                "url": "https://www.radiant14.com",
+                "type": "portfolio",
+                "description": "Personal portfolio and professional website",
+                "priority": "high"
+            }
+        ],
+        "youtubeVideos": [
+            {
+                "url": "https://www.youtube.com/shorts/Vrr-VQAQaQA",
+                "type": "short",
+                "channel": "RadiantAwakening",
+                "priority": "high"
+            },
+            {
+                "url": "https://www.youtube.com/watch?v=msXV0tMAVDU",
+                "type": "full",
+                "channel": "RadiantAwakening",
+                "priority": "high"
+            },
+            {
+                "url": "https://www.youtube.com/watch?v=nrMfxE_hZqs",
+                "type": "full",
+                "channel": "RadiantAwakening",
+                "priority": "high"
+            },
+            {
+                "url": "https://www.youtube.com/shorts/hwVYoqIuqsY",
+                "type": "short",
+                "channel": "RadiantAwakening",
+                "priority": "high"
+            },
+            {
+                "url": "https://www.youtube.com/shorts/fS0Y8wAP_J4",
+                "type": "short",
+                "channel": "RadiantAwakening",
+                "priority": "high"
+            }
+        ],
+        "tiktokVideos": [
+            {
+                "url": "https://www.tiktok.com/@radiant14percent/video/7359311511464054058",
+                "username": "@radiant14percent",
+                "type": "short",
+                "priority": "high"
+            },
+            {
+                "url": "https://www.tiktok.com/@radiant14percent/video/7340396063184129326",
+                "username": "@radiant14percent",
+                "type": "short",
+                "priority": "high"
+            },
+            {
+                "url": "https://www.tiktok.com/@radiant14percent/video/7478899635151605038",
+                "username": "@radiant14percent",
+                "type": "short",
+                "priority": "high"
+            },
+            {
+                "url": "https://www.tiktok.com/@radiant14percent/video/7468503406215433518",
+                "username": "@radiant14percent",
+                "type": "short",
+                "priority": "high"
+            }
+        ],
+        "socialMedia": [
+            {
+                "platform": "Instagram",
+                "url": "https://www.instagram.com/radiant14percent/",
+                "username": "@radiant14percent",
+                "type": "primary",
+                "description": "Main Instagram account for content creation and engagement",
+                "priority": "high",
+                "interactionSettings": {
+                    "commentFrequency": "moderate",
+                    "likeFrequency": "high",
+                    "followFrequency": "low",
+                    "contentCreation": true,
+                    "engagementStrategy": "communityBuilding"
+                }
+            }
+        ]
+    },
+    "brandGuidelines": {
+        "coreObjective": "Build the Radiant14 brand on Instagram as an authentic, direct, and informative voice for colorectal cancer awareness, focusing on young-onset CRC and the realities of survivorship.",
+        "contentStrategy": {
+            "hashtags": {
+                "brand": ["#Radiant14"],
+                "coreCRC": ["#ColorectalCancer", "#ColonCancer", "#RectalCancer", "#CRCAwareness"],
+                "youngOnset": ["#YoungOnsetCRC", "#YoungAdultCancer", "#CancerUnder40", "#NotTooYoung"],
+                "personal": ["#Stage4Cancer", "#Stage4Thriver", "#KRASmutation", "#CancerSurvivor", "#NED", "#LifeAfterCancer"],
+                "action": ["#GetScreened", "#KnowYourSymptoms", "#PatientAdvocacy", "#Colonoscopy"],
+                "community": ["#CancerCommunity", "#CancerSupport", "#CancerJourney"]
+            },
+            "postingSchedule": {
+                "timeWindows": [
+                    "6:00 AM - 8:00 AM PST",
+                    "12:00 PM - 1:00 PM PST",
+                    "5:00 PM - 7:00 PM PST"
+                ],
+                "frequency": "3-5 high-quality posts per week"
+            },
+            "contentThemes": [
+                "My Story, Unfiltered",
+                "Demystifying CRC",
+                "Young-Onset CRC",
+                "Life WITH/AFTER Cancer",
+                "Actionable Advice/Advocacy",
+                "Behind the Scenes",
+                "Community Focus"
+            ],
+            "voiceAndTone": {
+                "direct": "Let's cut the crap. Cancer treatment is brutal.",
+                "analytical": "My tumor had a KRAS mutation. Here's why that mattered...",
+                "skeptical": "Was told I was too young. Stage 4 later proved that wrong.",
+                "relatable": "Chemo brain's hitting different today. Pretty sure I argued with the toaster.",
+                "empowering": "Knowledge is power in this fight. Ask the questions. Demand the tests."
+            }
+        },
+        "engagementRules": {
+            "targetAccounts": [
+                "Individuals sharing CRC journeys",
+                "Cancer advocacy groups & non-profits",
+                "Medical professionals",
+                "Engaged followers"
+            ],
+            "topicsToAvoid": [
+                "Specific medical advice",
+                "Unproven therapies",
+                "Personal relationships",
+                "Celebrity gossip",
+                "Violations of community guidelines"
+            ],
+            "responseTemplates": {
+                "thankYou": "Appreciate the support. Means a lot.",
+                "sharedExperience": "Thanks for sharing that. It's a rough road.",
+                "medicalAdvice": "I can only share what I went through, definitely not medical advice.",
+                "coping": "That's tough. For me, [brief strategy] helped sometimes.",
+                "misinformation": "Actually, current guidelines suggest [fact]. More info at [source]."
+            },
+            "actionLimits": {
+                "betweenActions": "30-60 seconds",
+                "sessionDuration": "15-20 minutes per hour",
+                "dailyActivity": "Spread throughout day"
+            }
+        },
+        "contentExamples": {
+            "captionTemplates": [
+                "Stage 4 at 29. Wasn't on my bingo card. Now I'm navigating NED and life post-treatment.",
+                "Got that KRAS mutation? Me too. It changes the game plan. Know your markers, people.",
+                "Some days the fatigue hits like a truck. Pushing through doesn't always mean 'doing more.'"
+            ],
+            "postTypes": {
+                "reels": "Short, punchy videos explaining terms or sharing tips",
+                "carousels": "Chronological story breakdowns and myth busting",
+                "staticImages": "Powerful quotes overlaid on high-quality photos",
+                "infographics": "Key stats presented clearly"
+            },
+            "storyIdeas": [
+                "Q&A Stickers",
+                "Polls about symptoms and screening",
+                "Behind-the-Scenes content",
+                "Resource sharing",
+                "Quick takes on cancer experience"
+            ]
+        }
+    },
+    "credentials": {
+        "instagram": {
+            "username": "radiant14percent",
+            "password": "ENV_VARIABLE",
+            "note": "Credentials are stored securely in environment variables"
+        }
+    }
+} 

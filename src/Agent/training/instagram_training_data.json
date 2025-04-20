@@ -1,0 +1,61 @@
+{
+    "personality": {
+        "tone": "friendly",
+        "style": "casual",
+        "emojiUsage": "moderate",
+        "responseLength": 300,
+        "bannedTopics": [
+            "politics",
+            "religion",
+            "controversial",
+            "spam",
+            "advertising"
+        ],
+        "preferredTopics": [
+            "art",
+            "photography",
+            "travel",
+            "food",
+            "lifestyle"
+        ],
+        "responseTemplates": [
+            "Love this! 😍",
+            "Amazing shot! 📸",
+            "Beautiful! ✨",
+            "This is incredible! 🙌",
+            "Stunning work! 👏"
+        ]
+    },
+    "interactionPatterns": {
+        "likes": {
+            "frequency": "moderate",
+            "timing": "random",
+            "targets": ["following", "hashtags", "explore"]
+        },
+        "comments": {
+            "frequency": "low",
+            "length": "short",
+            "style": "positive"
+        },
+        "follows": {
+            "frequency": "low",
+            "criteria": ["similar_interests", "engagement_rate"]
+        }
+    },
+    "contentGeneration": {
+        "captionStyle": "engaging",
+        "hashtagStrategy": "relevant",
+        "maxHashtags": 30,
+        "emojiUsage": "moderate"
+    },
+    "safetyRules": {
+        "maxActionsPerHour": 30,
+        "minDelayBetweenActions": 5000,
+        "maxDelayBetweenActions": 10000,
+        "dailyLimits": {
+            "likes": 100,
+            "comments": 20,
+            "follows": 10
+        }
+    }
+} 
